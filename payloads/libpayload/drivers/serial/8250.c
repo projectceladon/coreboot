@@ -61,10 +61,10 @@ static void serial_write_reg(uint8_t val, int offset)
 		outb(val, IOBASE + offset);
 	else
 #endif
-		if (lib_sysinfo.serial->regwidth == 4)
-			writel(val & 0xff, MEMBASE + offset);
-		else
-			writeb(val, MEMBASE + offset);
+	if (lib_sysinfo.serial->regwidth == 4)
+		writel(val & 0xff, MEMBASE + offset);
+	else
+		writeb(val, MEMBASE + offset);
 }
 
 #if IS_ENABLED(CONFIG_LP_SERIAL_SET_SPEED)
@@ -127,7 +127,7 @@ void serial_init(void)
 	}
 
 #if IS_ENABLED(CONFIG_LP_SERIAL_SET_SPEED)
-	serial_hardware_init(CONFIG_LP_SERIAL_BAUD_RATE, 8, 0, 1);
+//	serial_hardware_init(CONFIG_LP_SERIAL_BAUD_RATE, 8, 0, 1);
 #endif
 }
 
@@ -145,11 +145,13 @@ void serial_console_init(void)
 
 void serial_putchar(unsigned int c)
 {
+	int i;
+
 	if (!serial_hardware_is_present)
 		return;
-#if !IS_ENABLED(CONFIG_LP_PL011_SERIAL_CONSOLE)
-	while ((serial_read_reg(0x05) & 0x20) == 0) ;
-#endif
+
+	while ((serial_read_reg(0x05) & 0x20) == 0) i=1;
+
 	serial_write_reg(c, 0x00);
 	if (c == '\n')
 		serial_putchar('\r');

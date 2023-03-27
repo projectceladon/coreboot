@@ -111,7 +111,7 @@ void pci_write_config32(u32 device, u16 reg, u32 val);
 
 int pci_find_device(u16 vid, u16 did, pcidev_t *dev);
 u32 pci_read_resource(pcidev_t dev, int bar);
-
+int pci_find_device_by_bus(int bnum, u16 vid, u16 did, pcidev_t *dev);
 void pci_set_bus_master(pcidev_t dev);
 
 #endif

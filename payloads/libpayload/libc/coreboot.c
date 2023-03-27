@@ -75,7 +75,7 @@ static void cb_parse_memory(void *ptr, struct sysinfo_t *info)
 
 static void cb_parse_serial(void *ptr, struct sysinfo_t *info)
 {
-	info->serial = ((struct cb_serial *)ptr);
+	info->serial = NULL;//((struct cb_serial *)ptr);
 }
 
 static void cb_parse_vboot_handoff(unsigned char *ptr, struct sysinfo_t *info)

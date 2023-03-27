@@ -111,6 +111,10 @@ static int find_on_bus(int bus, unsigned short vid, unsigned short did,
 
 	return 0;
 }
+int pci_find_device_by_bus(int bnum, u16 vid, u16 did, pcidev_t * dev)
+{
+	return find_on_bus(bnum, vid, did, dev);
+}
 
 int pci_find_device(u16 vid, u16 did, pcidev_t * dev)
 {

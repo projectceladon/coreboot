@@ -59,13 +59,13 @@ int lib_get_sysinfo(void)
 
 	/* Get information from the coreboot tables,
 	 * if they exist */
-
 	ret = get_coreboot_info(&lib_sysinfo);
 
+#if 0
 	/* Get the CPU speed (for delays) if not set from the default value. */
 	if (lib_sysinfo.cpu_khz == CPU_KHZ_DEFAULT)
 		lib_sysinfo.cpu_khz = get_cpu_speed();
-
+#endif
 	if (!lib_sysinfo.n_memranges) {
 		/* If we can't get a good memory range, use the default. */
 		lib_sysinfo.n_memranges = 2;

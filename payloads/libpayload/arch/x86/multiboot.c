@@ -48,6 +48,8 @@ static int mb_add_memrange(struct sysinfo_t *info, unsigned long long base,
 
 	info->memrange[info->n_memranges].base = base;
 	info->memrange[info->n_memranges].size = size;
+	if (type > CB_MEM_VENDOR_RSVD)
+		type = CB_MEM_RESERVED;
 	info->memrange[info->n_memranges].type = type;
 	info->n_memranges++;
 

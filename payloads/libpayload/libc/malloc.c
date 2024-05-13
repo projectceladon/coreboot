@@ -295,12 +295,6 @@ void *realloc(void *ptr, size_t size)
 	/* Get the original size of the block. */
 	osize = SIZE(*((hdrtype_t *) pptr));
 
-	/*
-	 * Free the memory to update the tables - this won't touch the actual
-	 * memory, so we can still use it for the copy after we have
-	 * reallocated the new space.
-	 */
-	free(ptr);
 	ret = alloc(size, type);
 
 	/*
@@ -312,6 +306,8 @@ void *realloc(void *ptr, size_t size)
 
 	/* Copy the memory to the new location. */
 	memcpy(ret, ptr, osize > size ? size : osize);
+
+	free(ptr);
 
 	return ret;
 }

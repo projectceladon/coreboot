@@ -412,7 +412,14 @@ start:
 		}
 	}
 
-	if ((optchar = (int)*place++) == (int)':' ||
+	/* If place = EMSG, terminate to avoid out-of-bound read. */
+	if (*place == '\0') {
+		return (-1);
+	}
+	optchar = (int)*place;
+	place++;  // Increment safely after checking
+
+	if (optchar == (int)':' ||
 	    (optchar == (int)'-' && *place != '\0') ||
 	    (oli = strchr(options, optchar)) == NULL) {
 		/*

@@ -32,6 +32,7 @@
 #define _TIME_H
 
 #include <stddef.h>
+#include <stdint.h>
 
 /**
  * @defgroup time Time functions
@@ -40,7 +41,7 @@
 
 /** System time structure */
 struct timeval {
-	time_t tv_sec;       /**< Seconds */
+	int64_t tv_sec;      /**< Seconds */
 	suseconds_t tv_usec; /**< Microseconds */
 };
 

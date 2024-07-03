@@ -45,7 +45,7 @@ extern u32 cpu_khz;
 
 static struct {
 	u64 ticks;
-	time_t secs;
+	int64_t secs;
 	suseconds_t usecs;
 } clock;
 
